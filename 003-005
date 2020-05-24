@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	
+	long long int world_population, country_population;
+	cout << "Enter the world's population:  ";
+	cin >> world_population;
+	cout << "Enter the population of the US: ";
+	cin >> country_population;
+	float percentage = ((float) country_population / world_population) * 100;
+	cout << "The population of the US is " << percentage << "%"
+		<< " of the world population.\n";
+
+	return 0;
+}
