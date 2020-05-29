@@ -10,13 +10,13 @@ int main() {
 	char letter_grade;
 	int age;
 
-	cout << "What is your first name?";
+	cout << "What is your first name? ";
 	getline(cin, first_name);
-	cout << "What is your last name?";
+	cout << "What is your last name? ";
 	getline(cin, last_name);
-	cout << "What letter grade do you deserve?";
+	cout << "What letter grade do you deserve? ";
 	cin >> letter_grade;
-	cout << "What is your age?";
+	cout << "What is your age? ";
 	cin >> age;
 
 	cout << "Name; " << last_name + ", " + first_name << endl;
