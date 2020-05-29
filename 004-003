@@ -1,0 +1,17 @@
+#include <iostream> 
+#include <string>
+#include <cstring>
+
+int main() { 
+	using namespace std; 
+	
+	cout << "Enter yi\our first name: ";
+	char first_name[30];
+	cin.getline(first_name, 30);
+	cout << "Enter your last name: ";
+	char last_name[30];
+	cin.getline(last_name, 30);
+	cout << "Here's the infomation in a single string: ";
+	cout << last_name << ", " << first_name;
+	return 0;
+}
