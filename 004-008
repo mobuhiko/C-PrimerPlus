@@ -17,11 +17,12 @@ int main() {
 
 	for (unsigned int i = 0; i < pizza_number; ++i) {
 		cin.get();
-		cout << "company?\n";
-		getline(cin, my_pizza[i].company);
 		
 		cout << "size?\n";
 		cin >> my_pizza[i].size;
+		
+		cout << "company?\n";
+		getline(cin, my_pizza[i].company);
 		
 		cout << "weight?\n";
 		cin >> my_pizza[i].weight;
