@@ -1,0 +1,22 @@
+#include <iostream> 
+#include <string>
+#include <cstring>
+using namespace std;
+
+struct Pizza {
+	string company;
+	float size;
+	float weight;
+};
+
+int main() {
+	
+	Pizza my_pizza;
+
+	cout << "Brand: " << my_pizza.company << endl;
+	cout << "Weight: " << my_pizza.size << endl;
+	cout << "Calorie: " << my_pizza.weight << endl;
+	cout << endl;
+		
+	return 0;
+}
