@@ -7,7 +7,6 @@ int main() {
 
 	array<double, 3> record;
 	
-
 	cout << "Enter your three times' 40m record in second\n";
 	for (unsigned int i = 0; i < 3; i++) {
 		cin >> record[i];
