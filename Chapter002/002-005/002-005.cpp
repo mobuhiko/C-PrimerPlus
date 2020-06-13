@@ -13,6 +13,7 @@ int main(void) {
   
 	cout << temperature_celsius << " degrees Celsius is "
 		<< temperature_fahrenheit << " degrees Fahreheit";
+	return 0;
 }
 
 float C2F(float c) {
