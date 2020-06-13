@@ -12,6 +12,7 @@ int main(void) {
 
 	cout << light_years << " light years = "
 		<< astronomical_units << " astronomical units. ";
+	return 0;
 }
 
 double ly2au(double light_years) {
