@@ -9,6 +9,7 @@ int main(void) {
 	int age2month = year2month(age);
 	cout << "you are " << age << " years old, which is "
 		<< age2month << " months long" << endl;
+	return 0;
 }
 
 int year2month(int year) {
