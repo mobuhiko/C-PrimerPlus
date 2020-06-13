@@ -1,7 +1,6 @@
 #include <iostream>
 float C2F(float c);
 
-
 int main(void) {
 	using namespace std;
 
