@@ -14,7 +14,8 @@ int main()
     {
         min = b;
         max = a;
-    }else if(a <= b)
+    }
+    else if(a <= b)
     {
         min = a;
         max = b;
