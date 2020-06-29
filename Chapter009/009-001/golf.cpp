@@ -38,8 +38,7 @@ int setgolf(golf & g)
 // function resets handicap to new value
 void handicap(golf & g, int hc)
 {
-    cout << "Enter the handicap tp reset the score: ";
-    cin >> g.handicap;
+    g.handicap = hc;
     return;
 }
 
