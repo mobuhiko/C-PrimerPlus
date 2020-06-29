@@ -35,17 +35,14 @@ int main()
             cin >> golf_member[golf_number].handicap;
         }
 
-
         cout << "do you want to continue to reset? (y/n): ";
         cin >> answer;
     }
-
 
     for(int i = 0; i < count; ++i)
     {
         showgolf(golf_member[i]);
     }
-
 
     return 0;
 }
