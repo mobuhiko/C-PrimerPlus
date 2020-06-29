@@ -22,6 +22,7 @@ int main()
     while(answer != 'n')
     {
         int golf_number;
+        int new_handicap;
         cout << "Enter the # you want to reset the score: ";
         cin >> golf_number;
         if(golf_number > count)
@@ -32,7 +33,8 @@ int main()
         else
         {
             cout << "Please enter the score: ";
-            cin >> golf_member[golf_number].handicap;
+            cin >> new_handicap;
+            handicap(golf_member[golf_number], new_handicap);
         }
 
         cout << "do you want to continue to reset? (y/n): ";
