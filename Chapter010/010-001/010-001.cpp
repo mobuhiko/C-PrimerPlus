@@ -51,7 +51,7 @@ void bank_account::deposit() {
   }
   else {
     cout << "Please insert the money\n";
-    cout << "..."; // checking the amount by machine
+    cout << "...\n"; // checking the amount by machine
     cout << "Transaction succeeded\n\n";
     m_balance += amount;
   }
@@ -95,10 +95,10 @@ void menu(bank_account bank_account);
 int main() {
   cout << "Welcome to ABC Bank\n";
   cout << "Let's create your account\n";
-  bank_account bank_account1 = bank_account();
+  bank_account bank_account1;
 
   menu(bank_account1);
- 
+
   return 0;
 }
 
@@ -126,5 +126,4 @@ void menu(bank_account bank_account) {
         cout << "ERROR! Please try again.\n\n";
         return menu(bank_account);
     }
-    
 }
