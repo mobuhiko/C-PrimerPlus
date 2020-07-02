@@ -14,31 +14,35 @@ namespace VECTOR
     const double Rad_to_deg = 45.0 / atan(1.0); // should be about 57.2957795130823
     // private methods
     // calculates magnitude from x and y
-    void Vector::set_mag()
+    double Vector::set_mag()
     {
+        double mag;
         mag = sqrt(x * x + y * y);
+        return mag;
     }
-    void Vector::set_ang()
+    double Vector::set_ang()
     {
+        double ang;
         if (x == 0.0 && y == 0.0)
             ang = 0.0;
         else
             ang = atan2(y, x);
+        return ang;
     }
     // set x from polar coordinate
-    void Vector::set_x()
+    void Vector::set_x(double mag, double ang)
     {
         x = mag * cos(ang);
     }
     // set y from polar coordinate
-    void Vector::set_y()
+    void Vector::set_y(double mag, double ang)
     {
         y = mag * sin(ang);
     }
     // public methods
     Vector::Vector()             // default constructor
     {
-        x = y = mag = ang = 0.0;
+        x = y = 0.0;
         mode = RECT;
     }
     // construct vector from rectangular coordinates if form is r
@@ -55,15 +59,16 @@ namespace VECTOR
         }
         else if (form == POL)
         {
-            mag = n1; ang = n2 / Rad_to_deg;
-            set_x();
-            set_y();
+            double mag = n1;
+            double ang = n2 / Rad_to_deg;
+            set_x(mag, ang);
+            set_y(mag, ang);
         }
         else
         {
             cout << "Incorrect 3rd argument to Vector() -- ";
             cout << "vector set to 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -82,16 +87,16 @@ namespace VECTOR
         }
         else if (form == POL)
         {
-            mag = n1;
-            ang = n2 / Rad_to_deg;
-            set_x();
-            set_y();
+            double mag = n1;
+            double ang = n2 / Rad_to_deg;
+            set_x(mag, ang);
+            set_y(mag, ang);
         }
         else
         {
             cout << "Incorrect 3rd argument to Vector() -- ";
             cout << "vector set to 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -141,7 +146,7 @@ namespace VECTOR
             os << "(x,y) = (" << v.x << ", " << v.y << ")";
         else if (v.mode == Vector::POL)
         {
-            os << "(m,a) = (" << v.mag << ", " << v.ang * Rad_to_deg << ")";
+            os << "(m,a) = (" << v.magval() << ", " << v.angval() * Rad_to_deg << ")";
         }
         else
             os << "Vector object mode is invalid";
