@@ -68,5 +68,11 @@ int main()
     Cow cow_2("COW", "SLEEPING", 100);
     cow_2.ShowCow();
 
+    Cow cow_3(cow_2);
+    cow_3.ShowCow();
+
+    Cow cow_4 = cow_3;
+    cow_4.ShowCow();
+    
     return 0;
 }
