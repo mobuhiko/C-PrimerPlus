@@ -1,3 +1,8 @@
+/* fail to read the file for unknown reason */
+/* the program terminates with "cannot open" */
+
+
+/*
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -20,10 +25,10 @@ int main()
 	using std::tolower;
 	using std::endl;
 
-	//const string filename = "D:\GitPractice\C-PrimerPlus\Chapter016\016-003\016-003.txt";
+	const string filename = "D:\GitPractice\C-PrimerPlus\Chapter016\016-003\016-003.txt";
 	std::ifstream fin;
-	fin.open("D:\GitPractice\C - PrimerPlus\Chapter016\016-003\016-003.txt");
-	if (!fin.is_open())
+	fin.open(filename);
+	if (fin.fail())
 	{
 		std::cout << "cannot open\n";
 		exit(EXIT_FAILURE);
@@ -31,11 +36,13 @@ int main()
 
 	string temp;
 	std::vector<string> wordlist;
-	std::getline(fin, temp, ' ');
+	std::getline(fin, temp, '\n');
 	while (fin)
 	{
 		wordlist.push_back(temp);
 	}
+	const int NUM = wordlist.size();
+
 
 	std::srand(std::time(0));
 	char play;
@@ -103,3 +110,4 @@ int main()
 	cout << "Bye\n";
 	return 0;
 }
+*/
