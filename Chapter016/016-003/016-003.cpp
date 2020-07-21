@@ -4,15 +4,14 @@
 #include <ctime>
 #include <cctype>
 
+#include <fstream>
+#include <vector>
+
+
 using std::string;
 
 const int NUM = 26;
 
-const string wordlist[NUM] = { "apiary", "beetle", "cereal",
-"danger", "ensign", "florid", "garage", "health", "insult",
-"jackal", "keeper", "loaner", "manage", "nonce", "onset",
-"plaid", "quilt", "remote", "stolid", "train", "useful",
-"valid", "whence", "xenon", "yearn", "zippy" };
 
 int main()
 {
@@ -20,6 +19,24 @@ int main()
 	using std::cin;
 	using std::tolower;
 	using std::endl;
+
+	//const string filename = "D:\GitPractice\C-PrimerPlus\Chapter016\016-003\016-003.txt";
+	std::ifstream fin;
+	fin.open("D:\GitPractice\C - PrimerPlus\Chapter016\016-003\016-003.txt");
+	if (!fin.is_open())
+	{
+		std::cout << "cannot open\n";
+		exit(EXIT_FAILURE);
+	}
+
+	string temp;
+	std::vector<string> wordlist;
+	std::getline(fin, temp, ' ');
+	while (fin)
+	{
+		wordlist.push_back(temp);
+	}
+
 	std::srand(std::time(0));
 	char play;
 	cout << "Will you play a word game? <y/n> ";
