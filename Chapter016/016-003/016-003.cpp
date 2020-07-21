@@ -42,7 +42,7 @@ int main()
 		wordlist.push_back(temp);
 	}
 	const int NUM = wordlist.size();
-
+	
 
 	std::srand(std::time(0));
 	char play;
