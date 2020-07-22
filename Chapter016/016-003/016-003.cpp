@@ -21,7 +21,9 @@ int main()
     using std::endl;
     using std::getline;
 
-    const string filename = "wordlist.txt";
+    const string filename = "016-003.txt";
+    // if you use full path, keep in mind that
+    // use double backslash "C:\\016-003.txt", single backslash in Windows OS won't be recognized
     std::ifstream fin;
     fin.open(filename);
 
