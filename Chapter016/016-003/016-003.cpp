@@ -21,7 +21,7 @@ int main()
     using std::endl;
     using std::getline;
 
-    const string filename = "D:\\016-003.txt";
+    const string filename = "wordlist.txt";
     std::ifstream fin;
     fin.open(filename);
 
@@ -34,6 +34,7 @@ int main()
     string temp;
     std::vector<string> wordlist;
     getline(fin, temp); // read a line into temp, up to \n (default), and discard \n
+    // same as getline(fin, temp, '\n');
     while (fin)
     {
         wordlist.push_back(temp);
