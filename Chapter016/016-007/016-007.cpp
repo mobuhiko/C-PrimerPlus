@@ -11,16 +11,17 @@ bool is_same_element(vector<int> array, int target);
 
 int main()
 {
-    int all_d = 0;
+    unsigned int all_d;
     cout << "how many dots in your lottory card: ";
     cin >> all_d;
 
-    int selected_d = 0;
+    unsigned int selected_d;
     cout << "how many dots should be selected: ";
     cin >> selected_d;
     while(selected_d)
     {
-        if((selected_d <= all_d) && (selected_d >= 1))
+        // 0, segment fault
+        if((selected_d <= all_d) && (selected_d > 0))
         {
             break;
         }
@@ -45,7 +46,16 @@ int main()
         cin >> temp;
         while(temp)
         {
-            if((temp > all_d) || (temp <= 0))
+            // 0, passed?
+            if(temp == 0)
+            {
+                cout << "Error. Please enter again.\n";
+                cout << "which numbers did you choose?\n";
+                cin >> temp;
+                continue;
+            }
+            
+            if((temp > all_d))
             {
                 cout << "Error. Please enter again.\n";
                 cout << "which numbers did you choose?\n";
