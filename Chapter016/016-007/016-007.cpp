@@ -11,11 +11,11 @@ bool is_same_element(vector<int> array, int target);
 
 int main()
 {
-    unsigned int all_d;
+    int all_d;
     cout << "how many dots in your lottory card: ";
     cin >> all_d;
 
-    unsigned int selected_d;
+    int selected_d;
     cout << "how many dots should be selected: ";
     while(cin >> selected_d)
     {
