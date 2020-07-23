@@ -17,8 +17,7 @@ int main()
 
     unsigned int selected_d;
     cout << "how many dots should be selected: ";
-    cin >> selected_d;
-    while(selected_d)
+    while(cin >> selected_d)
     {
         // 0, segment fault
         if((selected_d <= all_d) && (selected_d > 0))
@@ -39,30 +38,15 @@ int main()
     for(int i = 0; i < selected_d; ++i)
         choice[i] = 0;
 
-    for(int i = 0; i < selected_d; ++i)
+    for(int i = 0; i < selected_d;)
     {
         int temp;
         cout << "which numbers did you choose?\n";
-        cin >> temp;
-        while(temp)
+        while(cin >> temp)
         {
             // 0, passed?
-            if(temp == 0)
-            {
-                cout << "Error. Please enter again.\n";
-                cout << "which numbers did you choose?\n";
-                cin >> temp;
-                continue;
-            }
-            
-            if((temp > all_d))
-            {
-                cout << "Error. Please enter again.\n";
-                cout << "which numbers did you choose?\n";
-                cin >> temp;
-                continue;
-            }
-            else if(is_same_element(choice, temp))
+            if(((temp < 1) || (temp > all_d))
+                || (is_same_element(choice, temp)))
             {
                 cout << "Error. Please enter again.\n";
                 cout << "which numbers did you choose?\n";
@@ -75,6 +59,7 @@ int main()
             }
         }
         choice[i] = temp;
+        ++i;
     }
 
     vector<int> t_number = lotto(all_d, selected_d);
@@ -92,8 +77,10 @@ int main()
     for(int i = 0; i < selected_d; ++i)
     {
         for(int j = 0; j < selected_d; ++j)
-            if(choice[i] = t_number[j])
+            if(choice[i] == t_number[j])
+            {
                 atari++;
+            }
     }
     cout << atari << " numbers are same\n";
     return 0;
