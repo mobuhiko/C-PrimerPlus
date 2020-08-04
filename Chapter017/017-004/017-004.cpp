@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 {
     // set a "input1.txt", "input2.txt" and "output1.txt" 
     // in command? in debug property in VS2019 
+    // output1.txt is an empty file
     
     if (argc == 1)
     {
