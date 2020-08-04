@@ -43,43 +43,39 @@ int main(int argc, char* argv[])
 
     // Mat
     cout << "Mat: \n";
-    while (getline(fin1, temp))
+    while (!fin1.eof())
     {
-        if (fin1.eof())
-        {
-            cout << "EOF meets\n";
-            break;
-        }
+        getline(fin1, temp);
         mat_list.push_back(temp);
     }
-    cout << "fin1 finishes\n\n";
+    cout << "fin1 meets EOF, and finishes\n\n";
+    fin1.clear();
+    fin1.close();
 
     sort(mat_list.begin(), mat_list.end());
 
     cout << "Mat's friends: \n";
     for (auto i = mat_list.begin(); i != mat_list.end(); ++i)
         cout << *i << endl;
-    cout << "MAT: " << mat_list.size() << "friends\n\n";
-    
+    cout << "MAT: " << mat_list.size() << " friends\n\n"; // 20 
+
     // Pat
     cout << "Pat: \n";
-    while (getline(fin2, temp))
+    while (!fin2.eof())
     {
-        if (fin2.eof())
-        {
-            cout << "EOF meets\n";
-            break;
-        }
+        getline(fin2, temp);
         pat_list.push_back(temp);
     }
-    cout << "fin2 finishes\n\n";
+    cout << "fin2 meets EOF and finishes\n\n";
+    fin2.clear();
+    fin2.close();
 
     sort(pat_list.begin(), pat_list.end());
 
     cout << "Pat's friends: \n";
     for (auto i = pat_list.begin(); i != pat_list.end(); ++i)
         cout << *i << endl;
-    cout << "PAT: " << pat_list.size() << "friends\n\n";
+    cout << "PAT: " << pat_list.size() << " friends\n\n"; // 21
 
     vector<string> total_list;
     total_list.insert(total_list.end(), mat_list.begin(), mat_list.end());
@@ -91,12 +87,14 @@ int main(int argc, char* argv[])
     cout << "List: \n";
     for (auto i = total_list.begin(); i != total_list.end(); ++i)
         cout << *i << endl;
-    cout << "TOTAL: " << total_list.size() << "friends\n\n";
+    cout << "TOTAL: " << total_list.size() << " friends\n\n"; // 11 are same, so 20+21-11=30
 
     cout << "total list starts\n";
     for (auto i = total_list.begin(); i != total_list.end(); ++i)
         fout1 << *i << endl;
     cout << "total list ends\n";
+    fout1.clear();
+    fout1.close();
     cout << "check your matnpat.dat\n";
 
     return 0;
