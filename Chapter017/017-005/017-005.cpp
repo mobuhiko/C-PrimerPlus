@@ -8,6 +8,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    // prepare and set mat.dat, pat.dat, matnpat.dat in folder and command
     ifstream fin1;
     ifstream fin2;
     ofstream fout1;
