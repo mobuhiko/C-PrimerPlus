@@ -1,121 +1,164 @@
+/* it is not perfect yet */
+
 #include <iostream>
-using namespace std;
+#include <fstream>
+#include <cstdlib>
+#include <string>
 #include "emp.h"
 
-const int MAX = 10; // no more than 10 employees
-enum classkind{employee, manager, fink, highfink};
+const int MAX = 10;
+const char* file = "emp.txt";
 
-int main(void)
+int main()
 {
-    ofstream fout;
-    fout.open("emp.txt"); // create and open emp.txt
-    if(!fout.is_open())
-    {
-        cerr << "FAIL TO OPEN EMP.TXT\n";
-    }
-    cout << "SUCCESS TO OPEN EMP.TXT\n";
+    using namespace std;
+    abstr_emp* pc[MAX];
 
-    employee * pc[MAX];
+
     int classtype;
-    cout << "which type of employee to add?\n";
-    cout << "( 0 - employee, 1 - manager, 2 - fink, 3 - highfink)\n";
-     while((fin >> employee).get(ch)) // newline seperates int from data
+    int i = 0;
+
+    ofstream fout0(file, ios::out | ios::app);
+    if (!fout0.is_open())
     {
-        switch(classtype)
-        {
-        case employee:
-            pc[i] = new employee;
-            pc[i]->SetAll();
-            break;
-        }
-    }
-
-
-    cout << "which type of employee to add?\n";
-    cout << "( 0 - employee, 1 - manager, 2 - fink, 3 - highfink)\n";
-
-    while((fin >> employee).get(ch)) // newline seperates int from data
-    {
-        switch(classtype)
-        {
-        case employee:
-            pc[i] = new employee;
-
-            break;
-        }
-    }
-
-
-
-
-
-    /////////////////////////////////////////////////////
-    /*
-    employee em("Trip", "Harris", "Thumper");
-    cout << em << endl;
-    em.ShowAll();
-    manager ma("Amorphia", "Spindragon", "Nuancer", 5);
-    cout << ma << endl;
-    ma.ShowAll();
-    fink fi("Matt", "Oggs", "Oiler", "Juno Barr");
-    cout << fi << endl;
-    fi.ShowAll();
-    highfink hf(ma, "Curly Kew");  // recruitment?
-    hf.ShowAll();
-    cout << "Press a key for next phase:\n";
-    cin.get();
-    highfink hf2;
-    hf2.SetAll();
-    cout << "Using an abstr_emp * pointer:\n";
-    abstr_emp  * tri[4] = {&em, &fi, &hf, &hf2};
-    for (int i = 0; i < 4; i++)
-        tri[i]->ShowAll();
-    cout << "OLD VERSION ENDS\n\n";
-    */
-    ///////////////////////////////////////////////////////
-
-
-    // 17.17 [BEGIN]
-    /*
-    if (argc == 1)          // quit if no arguments
-    {
-        cerr << "Usage: " << argv[0] << " filename[s]\n";
+        cerr << "Can't open " << file << " file for output.\n";
+        system("pause");
         exit(EXIT_FAILURE);
     }
-    ifstream fin;              // open stream
-    long count;
-    long total = 0;
-    char ch;
-    for (int file = 1; file < argc; file++)
+    int index = 0;
+    cout << "\nPlease enter the class type of your input:\n";
+    cout << "1)Employee\t2)Manager\t3)Fink\t\t4)Highfink\tq)Quit\n";
+    while (cin >> classtype && index < MAX)
     {
-        fin.open(argv[file]);  // connect stream to argv[file]
-        if (!fin.is_open())
+        cin.ignore();
+        switch (classtype)
         {
-            cerr << "Could not open " << argv[file] << endl;
-            fin.clear(); continue;
+        case 1:
+            pc[index] = new employee;
+            pc[index]->SetAll();
+            break;
+        case 2:
+            pc[index] = new manager;
+            pc[index]->SetAll();
+            break;
+        case 3:
+            pc[index] = new fink;
+            pc[index]->SetAll();
+            break;
+        case 4:
+            pc[index] = new highfink;
+            pc[index]->SetAll();
+            break;
+        default:
+            cerr << "Warning: Type error!\n";
+            break;
         }
-        count = 0;
-        while (fin.get(ch))
-            count++;
-        cout << count << " characters in " << argv[file] << endl;
-        total += count;
-        fin.clear();           // needed for some implementations
-        fin.close();           // disconnect file
+        index++;
+        cout << "\nPlease enter the class type of your input:\n";
+        cout << "1)Employee\t2)Manager\t3)Fink\t\t4)Highfink\tq)Quit\n";
     }
-    cout << total << " characters in all files\n";
-    */
-    // 17.17 [END]
+    cout << "Input over.\nThank You!\n";
+    cout << "Begin to write into the file...\n";
+    cout << "Writing...\n";
+    for (i = 0; i < index; i++)
+        pc[i]->writeall(fout0);
+    fout0.clear();
+    fout0.close();
+    cout << "Write over.\n";
+
     ifstream fin;
-    fin.open("emp.txt", ios_base::out | ios_base::app);
-    if(!fin.is_open())
+    char ch;
+    fin.open(file);
+    if (fin.is_open())
     {
-        cerr << "FAIL TO OPEN EMP.TXT\n";
+        cout << "Here are the current contents of the " << file << " file:\n";
+        while ((fin >> classtype).get(ch))
+        {
+            switch (classtype)
+            {
+            case Employee: pc[i] = new employee; break;
+            case Manager: pc[i] = new manager; break;
+            case Fink: pc[i] = new fink; break;
+            case Highfink: pc[i] = new highfink; break;
+            default: cerr << "Warning: Type error!\n"; break;
+            }
+            pc[i]->setall(fin);
+            pc[i]->ShowAll();
+            i++;
+        }
+        fin.clear();
+        fin.close();
     }
-    cout << "SUCCESS TO OPEN EMP.TXT\n";
 
+    ofstream fout(file, ios::out | ios::app); 
+    if (!fout.is_open())
+    {
+        cerr << "Can't open " << file << " file for output.\n";
+        system("pause");
+        exit(EXIT_FAILURE);
+    }
+    
+    cout << "\nPlease enter the class type of your input:\n";
+    cout << "1)Employee\t2)Manager\t3)Fink\t\t4)Highfink\tq)Quit\n";
+    while (cin >> classtype && index < MAX)
+    {
+        cin.ignore();
+        switch (classtype)
+        {
+        case 1:
+            pc[index] = new employee;
+            pc[index]->SetAll();
+            break;
+        case 2:
+            pc[index] = new manager;
+            pc[index]->SetAll();
+            break;
+        case 3:
+            pc[index] = new fink;
+            pc[index]->SetAll();
+            break;
+        case 4:
+            pc[index] = new highfink;
+            pc[index]->SetAll();
+            break;
+        default:
+            cerr << "Warning: Type error!\n";
+            break;
+        }
+        index++;
+        cout << "\nPlease enter the class type of your input:\n";
+        cout << "1)Employee\t2)Manager\t3)Fink\t\t4)Highfink\tq)Quit\n";
+    }
+    cout << "Input over.\nThank You!\n";
+    cout << "Begin to write into the file...\n";
+    cout << "Writing...\n";
+    for (i = 0; i < index; i++)
+        pc[i]->writeall(fout);
+    fout.clear();
+    fout.close();
+    cout << "Write over.\n";
 
+    fin.open(file);
+    if (fin.is_open())
+    {
+        cout << "Here are the current contents of the " << file << " file:\n";
+        while ((fin >> classtype).get(ch))
+        {
+            switch (classtype)
+            {
+            case Employee: pc[i] = new employee; break;
+            case Manager: pc[i] = new manager; break;
+            case Fink: pc[i] = new fink; break;
+            case Highfink: pc[i] = new highfink; break;
+            default: cerr << "Warning: Type error!\n"; break;
+            }
+            pc[i]->setall(fin);
+            pc[i]->ShowAll();
+            i++;
+        }
+        fin.clear();
+        fin.close();
+    }
 
-
-    //////////////////////////////////////////////////////
     return 0;
 }
