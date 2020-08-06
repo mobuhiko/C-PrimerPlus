@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <algorithm> // for_each
 
 using namespace std;
 
@@ -28,7 +28,6 @@ void GetStrs(istream& is, vector<string>& vstr);
 
 int main()
 {
-	
 	vector<string> vostr;
 	string temp;
 
@@ -75,16 +74,12 @@ void GetStrs(istream& is, vector<string>& vstr)
 		for (int i = 0; i < len; ++i)
 		{
 			if (is.read(&ch, 1))
-			{
 				temp += ch;
-			}
 			else
 				break;
 		}
 
 		if(is)
-		{
 			vstr.push_back(temp);
-		}
 	}
 }
