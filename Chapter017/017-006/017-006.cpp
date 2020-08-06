@@ -17,9 +17,9 @@ int main()
 
     int classtype;
     int i = 0;
-
-    ofstream fout0(file, ios::out | ios::app);
-    if (!fout0.is_open())
+    // create and input to the file 
+    ifstream fin0(file, ios::out | ios::app);
+    if (!fin0.is_open())
     {
         cerr << "Can't open " << file << " file for output.\n";
         system("pause");
@@ -28,7 +28,7 @@ int main()
     int index = 0;
     cout << "\nPlease enter the class type of your input:\n";
     cout << "1)Employee\t2)Manager\t3)Fink\t\t4)Highfink\tq)Quit\n";
-    while (cin >> classtype && index < MAX)
+    while (cin >> classtype && index < MAX) // input to the output?
     {
         cin.ignore();
         switch (classtype)
@@ -61,18 +61,19 @@ int main()
     cout << "Begin to write into the file...\n";
     cout << "Writing...\n";
     for (i = 0; i < index; i++)
-        pc[i]->writeall(fout0);
-    fout0.clear();
-    fout0.close();
+        pc[i]->writeall(fin0);
+    fin0.clear();
+    fin0.close();
     cout << "Write over.\n";
 
-    ifstream fin;
+    // 
+    ofstream fout1;
     char ch;
-    fin.open(file);
-    if (fin.is_open())
+    fout1.open(file);
+    if (fout1.is_open())
     {
         cout << "Here are the current contents of the " << file << " file:\n";
-        while ((fin >> classtype).get(ch))
+        while ((fout1 >> classtype).get(ch))
         {
             switch (classtype)
             {
@@ -82,16 +83,16 @@ int main()
             case Highfink: pc[i] = new highfink; break;
             default: cerr << "Warning: Type error!\n"; break;
             }
-            pc[i]->setall(fin);
+            pc[i]->setall(fout1);
             pc[i]->ShowAll();
             i++;
         }
-        fin.clear();
-        fin.close();
+        fout1.clear();
+        fout1.close();
     }
 
-    ofstream fout(file, ios::out | ios::app); 
-    if (!fout.is_open())
+    ifstream fin1(file, ios::out | ios::app); 
+    if (!fin1.is_open())
     {
         cerr << "Can't open " << file << " file for output.\n";
         system("pause");
@@ -133,16 +134,16 @@ int main()
     cout << "Begin to write into the file...\n";
     cout << "Writing...\n";
     for (i = 0; i < index; i++)
-        pc[i]->writeall(fout);
-    fout.clear();
-    fout.close();
+        pc[i]->writeall(fin1);
+    fin1.clear();
+    fin1.close();
     cout << "Write over.\n";
 
-    fin.open(file);
-    if (fin.is_open())
+    fout2.open(file);
+    if (fout2.is_open())
     {
         cout << "Here are the current contents of the " << file << " file:\n";
-        while ((fin >> classtype).get(ch))
+        while ((fout2 >> classtype).get(ch))
         {
             switch (classtype)
             {
@@ -156,8 +157,8 @@ int main()
             pc[i]->ShowAll();
             i++;
         }
-        fin.clear();
-        fin.close();
+        fout2.clear();
+        fout2.close();
     }
 
     return 0;
